@@ -1,0 +1,9 @@
+# Smart Edge Pro Sensor - entry point used by the ESPHome dashboard "Adopt" button
+# and by the GitHub Action that publishes firmware updates.
+substitutions:
+  product_build: true
+  dashboard_import_url: github://mrnitinsaxena/smart-edge/pro-sensor.yaml@v${firmware_version}
+  update_manifest_url: https://mrnitinsaxena.github.io/smart-edge/pro-sensor/manifest.json
+
+packages:
+  core: !include pro_sensor_2026.11/core.yaml
