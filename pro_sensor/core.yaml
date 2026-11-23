@@ -4,7 +4,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.4"
+  firmware_version: "2026.11.5"
   project_id: "resonate.smart-edge-pro-sensor"
 
   SDA_I2C_PIN: "21"
@@ -147,7 +147,7 @@ rtttl:
               rtttl: ${sound_siren}
 logger:
   level: ${ "WARN" if logger_level is not defined or logger_level == "" else logger_level }
-  baud_rate: 0
+  baud_rate: ${ 0 if (usb_logs is defined and not usb_logs) else 115200 }
 
 esphome:
   name: ${ device_name if custom_device_name is not defined or custom_device_name == "" else custom_device_name }
@@ -171,6 +171,7 @@ esphome:
                   red: 0%
                   green: 100%
                   blue: 0%
+              - delay: 500ms
               - rtttl.play:
                   rtttl: ${sound_one_beep}
     - priority: 600
