@@ -1,0 +1,36 @@
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    pin: ${ external_ws2812_pin if external_ws2812_enable is defined and external_ws2812_enable else WS2812_PIN }
+    num_leds: ${ external_ws2812_num_leds if external_ws2812_enable is defined and external_ws2812_enable else 1 }
+    chipset: ws2812  
+    id: notification_light
+    name: Notification light
+    icon: mdi:led-strip-variant
+    effects:
+      - pulse:
+          name: "info"
+          update_interval: 2s
+          min_brightness: 15%
+          max_brightness: 80%
+          transition_length:
+            on_length: 500ms
+            off_length: 1.5s
+      - pulse:
+          name: "warning"
+          transition_length: 1s
+          update_interval: 1s
+          min_brightness: 15%
+          max_brightness: 80%
+      - pulse:
+          name: "error"
+          transition_length: 0.5s
+          update_interval: 0.5s
+          min_brightness: 15%
+          max_brightness: 80%
+      - pulse:
+          name: "alert"
+          transition_length: 0.25s
+          update_interval: 0.25s
+          min_brightness: 15%
+          max_brightness: 100%

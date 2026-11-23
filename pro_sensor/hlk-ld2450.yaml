@@ -1,0 +1,181 @@
+# Default values; override per include with `vars:` if needed.
+defaults:
+  uart_id: "uart_bus_hlk_ld2450"
+  ld2450_id: "hlk_ld2450"
+  ld2450_prefix: "HLK-LD2450 "
+
+uart:
+  id: ${uart_id}
+  rx_pin: 16
+  tx_pin: 17
+  baud_rate: 256000
+  parity: NONE
+  stop_bits: 1
+
+ld2450:
+  id: ${ld2450_id}
+  uart_id: ${uart_id}
+
+binary_sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    has_target:
+      name: Presence
+      device_class: occupancy
+    has_moving_target:
+      name: Motion
+      device_class: motion
+    has_still_target:
+      name: ${ld2450_prefix}Still Target
+
+number:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    presence_timeout:
+      name: "${ld2450_prefix}Timeout"
+    zone_1:
+      x1:
+        name: ${ld2450_prefix}Zone-1 X1
+      y1:
+        name: ${ld2450_prefix}Zone-1 Y1
+      x2:
+        name: ${ld2450_prefix}Zone-1 X2
+      y2:
+        name: ${ld2450_prefix}Zone-1 Y2
+    zone_2:
+      x1:
+        name: ${ld2450_prefix}Zone-2 X1
+      y1:
+        name: ${ld2450_prefix}Zone-2 Y1
+      x2:
+        name: ${ld2450_prefix}Zone-2 X2
+      y2:
+        name: ${ld2450_prefix}Zone-2 Y2
+    zone_3:
+      x1:
+        name: ${ld2450_prefix}Zone-3 X1
+      y1:
+        name: ${ld2450_prefix}Zone-3 Y1
+      x2:
+        name: ${ld2450_prefix}Zone-3 X2
+      y2:
+        name: ${ld2450_prefix}Zone-3 Y2
+
+switch:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    bluetooth:
+      name: ${ld2450_prefix}Bluetooth
+    multi_target:
+      name: ${ld2450_prefix}Multi Target Tracking
+
+select:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    baud_rate:
+      name: ${ld2450_prefix}Baud rate
+    zone_type:
+      name: ${ld2450_prefix}Zone Type
+
+button:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    factory_reset:
+      name: ${ld2450_prefix}LD2450 Factory Reset
+      entity_category: config
+    restart:
+      name: ${ld2450_prefix}LD2450 Restart
+      entity_category: config
+
+text_sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    version:
+      name: ${ld2450_prefix}LD2450 Firmware
+    mac_address:
+      name: ${ld2450_prefix}LD2450 BT MAC
+    target_1:
+      direction:
+        name: ${ld2450_prefix}Target-1 Direction
+    target_2:
+      direction:
+        name: ${ld2450_prefix}Target-2 Direction
+    target_3:
+      direction:
+        name: ${ld2450_prefix}Target-3 Direction
+
+sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    target_count:
+      name: ${ld2450_prefix}Presence Target Count
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    still_target_count:
+      name: ${ld2450_prefix}Still Target Count
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    moving_target_count:
+      name: ${ld2450_prefix}Moving Target Count
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    target_1:
+      x:
+        name: ${ld2450_prefix}Target-1 X
+      y:
+        name: ${ld2450_prefix}Target-1 Y
+      speed:
+        name: ${ld2450_prefix}Target-1 Speed
+      angle:
+        name: ${ld2450_prefix}Target-1 Angle
+      distance:
+        name: ${ld2450_prefix}Target-1 Distance
+      resolution:
+        name: ${ld2450_prefix}Target-1 Resolution
+    target_2:
+      x:
+        name: ${ld2450_prefix}Target-2 X
+      y:
+        name: ${ld2450_prefix}Target-2 Y
+      speed:
+        name: ${ld2450_prefix}Target-2 Speed
+      angle:
+        name: ${ld2450_prefix}Target-2 Angle
+      distance:
+        name: ${ld2450_prefix}Target-2 Distance
+      resolution:
+        name: ${ld2450_prefix}Target-2 Resolution
+    target_3:
+      x:
+        name: ${ld2450_prefix}Target-3 X
+      y:
+        name: ${ld2450_prefix}Target-3 Y
+      speed:
+        name: ${ld2450_prefix}Target-3 Speed
+      angle:
+        name: ${ld2450_prefix}Target-3 Angle
+      distance:
+        name: ${ld2450_prefix}Target-3 Distance
+      resolution:
+        name: ${ld2450_prefix}Target-3 Resolution
+    zone_1:
+      target_count:
+        name: ${ld2450_prefix}Zone-1 All Target Count
+      still_target_count:
+        name: ${ld2450_prefix}Zone-1 Still Target Count
+      moving_target_count:
+        name: ${ld2450_prefix}Zone-1 Moving Target Count
+    zone_2:
+      target_count:
+        name: ${ld2450_prefix}Zone-2 All Target Count
+      still_target_count:
+        name: ${ld2450_prefix}Zone-2 Still Target Count
+      moving_target_count:
+        name: ${ld2450_prefix}Zone-2 Moving Target Count
+    zone_3:
+      target_count:
+        name: ${ld2450_prefix}Zone-3 All Target Count
+      still_target_count:
+        name: ${ld2450_prefix}Zone-3 Still Target Count
+      moving_target_count:
+        name: ${ld2450_prefix}Zone-3 Moving Target Count

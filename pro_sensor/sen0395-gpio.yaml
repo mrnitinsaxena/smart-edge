@@ -1,0 +1,31 @@
+# Default values; override per include with `vars:` if needed.
+defaults:
+  sen0395_id: "sen0395"
+  sen0395_prefix: "SEN0395 "
+
+number:
+  - platform: template
+    name: ${sen0395_prefix}Presence delay
+    id: ${sen0395_id}_presence_delay
+    min_value: 1
+    max_value: 60
+    initial_value: 2
+    optimistic: true
+    step: 1
+    restore_value: true
+    unit_of_measurement: min
+    icon: mdi:timer-edit-outline
+    entity_category: config
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 27
+      mode: INPUT
+      inverted: false
+    name: Presence
+    id: ${sen0395_id}_presence
+    device_class: occupancy
+    filters:
+      - delayed_on: 0s
+      - delayed_off: !lambda "return id(${sen0395_id}_presence_delay).state * 60000;"

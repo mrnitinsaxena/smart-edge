@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Edge Pro Sensor – Firmware</title>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }
+    h1 { margin-bottom: .25rem; }
+    .muted { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Smart Edge Pro Sensor</h1>
+  <p class="muted">by Resonate to Innovate</p>
+  <p>Connect the sensor to this computer with a USB cable, then click Install to flash the latest firmware. Use Chrome or Edge on a desktop.</p>
+  <esp-web-install-button manifest="pro-sensor/manifest.json"></esp-web-install-button>
+  <p class="muted">Devices already set up in Home Assistant update themselves. Look for the <em>Firmware update</em> entity.</p>
+  <p><a href="https://github.com/mrnitinsaxena/smart-edge">Source on GitHub</a></p>
+</body>
+</html>
