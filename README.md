@@ -95,6 +95,7 @@ Set any of these under `substitutions:` in your device config.
 | `cpu_frequency_mode` | 240 MHz | `LIGHT` = 160 MHz; any other value = 80 MHz |
 | `timezone` | `Asia/Kolkata` | IANA timezone |
 | `logger_level` | `WARN` | ESPHome log level |
+| `usb_logs` | `true` | Logs over the USB cable (115200 baud); set `false` to turn off |
 
 ### Alerts and LEDs
 

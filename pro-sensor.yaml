@@ -2,6 +2,7 @@
 # and by the GitHub Action that publishes firmware updates.
 substitutions:
   product_build: true
+  usb_logs: false
   # IR remotes: all brands built in; the user picks theirs in Home Assistant
   ir_samsung_tv: true
   ir_sony_tv: true
