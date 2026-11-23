@@ -86,6 +86,7 @@ Set any of these under `substitutions:` in your device config.
 |---|---|---|
 | `custom_device_name` | `pro-sensor-xxxxxx` | Hostname |
 | `custom_friendly_name` | `Pro Sensor` | Name shown in Home Assistant |
+| `custom_area` | — | Room suggested to Home Assistant when the device is first added (e.g. `Guest Room`). Keep the room out of the name to avoid IDs like `guest_room_guest_room_sensor_…` |
 | `wifi_ssid` / `wifi_password` | — | Hard-code Wi-Fi instead of using onboarding |
 | `api_key` | provisioned by HA | Fix the API encryption key (also encrypts OTA) |
 | `web_username` / `web_password` | off | Enable the built-in web page (both required) |
