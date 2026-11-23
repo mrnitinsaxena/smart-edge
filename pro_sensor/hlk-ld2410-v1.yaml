@@ -1,0 +1,192 @@
+# substitutions:
+#   uart_id: "uart_bus_hlk_ld2410"
+#   ld2410_id: "hlk_ld2410"
+#   ld2410_prefix: "HLK-LD2410 "
+
+uart:
+  id: ${uart_id}
+  rx_pin: 16
+  tx_pin: 17
+  baud_rate: 256000
+  parity: NONE
+  stop_bits: 1
+
+ld2410:
+  id: ${ld2410_id}
+  uart_id: ${uart_id}
+
+binary_sensor:
+  - platform: gpio
+    name: ${ld2410_prefix}GPIO Out pin presence
+    device_class: presence
+    pin:
+      number: 26
+      mode: INPUT_PULLDOWN
+
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    has_target:
+      name: Presence
+      device_class: occupancy
+    has_moving_target:
+      name: Motion
+      device_class: motion
+    has_still_target:
+      name: ${ld2410_prefix}Still Target
+    out_pin_presence_status:
+      name: ${ld2410_prefix}Out pin presence status
+
+number:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    timeout:
+      name: ${ld2410_prefix}Timeout
+    light_threshold:
+      name: ${ld2410_prefix}Light threshold
+    max_move_distance_gate:
+      name: ${ld2410_prefix}Max move distance gate
+    max_still_distance_gate:
+      name: ${ld2410_prefix}Max still distance gate
+#     g0:
+#       move_threshold:
+#         name: ${ld2410_prefix}G0 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G0 still threshold
+#     g1:
+#       move_threshold:
+#         name: ${ld2410_prefix}G1 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G1 still threshold
+#     g2:
+#       move_threshold:
+#         name: ${ld2410_prefix}G2 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G2 still threshold
+#     g3:
+#       move_threshold:
+#         name: ${ld2410_prefix}G3 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G3 still threshold
+#     g4:
+#       move_threshold:
+#         name: ${ld2410_prefix}G4 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G4 still threshold
+#     g5:
+#       move_threshold:
+#         name: ${ld2410_prefix}G5 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G5 still threshold
+#     g6:
+#       move_threshold:
+#         name: ${ld2410_prefix}G6 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G6 still threshold
+#     g7:
+#       move_threshold:
+#         name: ${ld2410_prefix}G7 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G7 still threshold
+#     g8:
+#       move_threshold:
+#         name: ${ld2410_prefix}G8 move threshold
+#       still_threshold:
+#         name: ${ld2410_prefix}G8 still threshold
+
+switch:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    bluetooth:
+      name: ${ld2410_prefix}Bluetooth
+    engineering_mode:
+      name: ${ld2410_prefix}Engineering mode
+select:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    distance_resolution:
+      name: ${ld2410_prefix}Distance resolution
+    baud_rate:
+      name: ${ld2410_prefix}Baud rate
+    light_function:
+      name: ${ld2410_prefix}Light function
+    out_pin_level:
+      name: ${ld2410_prefix}Out pin level
+
+button:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    factory_reset:
+      name: ${ld2410_prefix}Factory reset
+    restart:
+      name: ${ld2410_prefix}Restart
+    query_params:
+      name: ${ld2410_prefix}Query params
+
+text_sensor:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    version:
+      name: ${ld2410_prefix}Firmware version
+    mac_address:
+      name: ${ld2410_prefix}MAC address
+
+sensor:
+  - platform: ld2410
+    ld2410_id: ${ld2410_id}
+    light:
+      name: ${ld2410_prefix}Light
+    moving_distance:
+      name: ${ld2410_prefix}Moving Distance
+    still_distance:
+      name: ${ld2410_prefix}Still Distance
+    moving_energy:
+      name: ${ld2410_prefix}Move Energy
+    still_energy:
+      name: ${ld2410_prefix}Still Energy
+    detection_distance:
+      name: ${ld2410_prefix}Detection Distance
+#     g0:
+#       move_energy:
+#         name: ${ld2410_prefix}G0 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G0 still energy
+#     g1:
+#       move_energy:
+#         name: ${ld2410_prefix}G1 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G1 still energy
+#     g2:
+#       move_energy:
+#         name: ${ld2410_prefix}G2 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G2 still energy
+#     g3:
+#       move_energy:
+#         name: ${ld2410_prefix}G3 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G3 still energy
+#     g4:
+#       move_energy:
+#         name: ${ld2410_prefix}G4 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G4 still energy
+#     g5:
+#       move_energy:
+#         name: ${ld2410_prefix}G5 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G5 still energy
+#     g6:
+#       move_energy:
+#         name: ${ld2410_prefix}G6 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G6 still energy
+#     g7:
+#       move_energy:
+#         name: ${ld2410_prefix}G7 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G7 still energy
+#     g8:
+#       move_energy:
+#         name: ${ld2410_prefix}G8 move energy
+#       still_energy:
+#         name: ${ld2410_prefix}G8 still energy

@@ -1,0 +1,31 @@
+# Default values; override per include with `vars:` if needed.
+defaults:
+  ld2410_id: "hlk_ld2410"
+  ld2410_prefix: "HLK-LD2410 "
+
+number:
+  - platform: template
+    name: ${ld2410_prefix}Presence delay
+    id: ${ld2410_id}_presence_delay
+    min_value: 1
+    max_value: 60
+    initial_value: 2
+    optimistic: true
+    step: 1
+    restore_value: true
+    unit_of_measurement: min
+    icon: mdi:timer-edit-outline
+    entity_category: config
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 26
+      mode: INPUT
+      inverted: false
+    name: Presence
+    id: ${ld2410_id}_presence
+    device_class: occupancy
+    filters:
+      - delayed_on: 0s
+      - delayed_off: !lambda "return id(${ld2410_id}_presence_delay).state * 60000;"
