@@ -5,8 +5,8 @@ on:
     types: [published]
 
 permissions:
-  contents: write
-  pages: write
+  contents: write   # attach binaries to the release
+  pages: write      # deploy to GitHub Pages
   id-token: write
 
 concurrency:
@@ -42,6 +42,12 @@ jobs:
           cp -r "${{ steps.esphome.outputs.name }}"/* site/pro-sensor/
           cp static/index.html site/
           ls -R site
+
+      - name: Set product name shown in Home Assistant
+        run: |
+          jq '.name = "Resonate to Innovate: Smart Edge Pro Sensor"' site/pro-sensor/manifest.json > manifest.tmp
+          mv manifest.tmp site/pro-sensor/manifest.json
+          cat site/pro-sensor/manifest.json
 
       - name: Attach binaries to release
         env:
