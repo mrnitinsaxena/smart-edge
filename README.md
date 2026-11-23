@@ -1,6 +1,5 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="static/images/smart-edge-logo-dark.svg">
     <img src="static/images/smart-edge-logo.svg" alt="Smart Edge" width="440">
   </picture>
 </p>
@@ -12,7 +11,7 @@
   <a href="https://github.com/mrnitinsaxena/smart-edge/releases">Releases</a>
 </p>
 
-ESPHome firmware for the **Smart Edge Pro Sensor** by Resonate to Innovate: an ESP32-based room sensor with temperature, humidity and light sensing, optional mmWave presence detection, IR remote control and a status LED with a buzzer. Built for [Home Assistant](https://www.home-assistant.io/).
+ESPHome firmware for the **Smart Edge Pro Sensor** by [Resonate to Innovate](https://resonatetoinnovate.com/): an ESP32-based room sensor with temperature, humidity and light sensing, optional mmWave presence detection, IR remote control and a status LED with a buzzer. Built for [Home Assistant](https://www.home-assistant.io/).
 
 ## Features
 
@@ -159,8 +158,11 @@ MIT. See [LICENSE](LICENSE).
 
 <p align="center">
   Designed and built by<br><br>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="static/images/resonate-to-innovate-logo-dark.svg">
-    <img src="static/images/resonate-to-innovate-logo.svg" alt="Resonate to Innovate" width="240">
-  </picture>
+  <a href="https://resonatetoinnovate.com/">
+    <picture>
+      <img src="static/images/resonate-to-innovate-logo.svg" alt="Resonate to Innovate" width="240">
+    </picture>
+  </a>
+  <br>
+  <a href="https://resonatetoinnovate.com/">resonatetoinnovate.com</a>
 </p>
