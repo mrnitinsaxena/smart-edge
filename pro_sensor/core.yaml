@@ -4,8 +4,8 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.5"
-  project_id: "resonate.smart-edge-pro-sensor"
+  firmware_version: "2026.11.6"
+  project_id: "Resonate to Innovate.Smart Edge Pro Sensor"
 
   SDA_I2C_PIN: "21"
   SCL_I2C_PIN: "22"
