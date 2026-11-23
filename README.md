@@ -1,4 +1,16 @@
-# Smart Edge Pro Sensor
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="static/images/smart-edge-logo-dark.svg">
+    <img src="static/images/smart-edge-logo.svg" alt="Smart Edge" width="440">
+  </picture>
+</p>
+
+<h1 align="center">Pro Sensor</h1>
+
+<p align="center">
+  <a href="https://mrnitinsaxena.github.io/smart-edge/"><b>Install firmware</b></a> ·
+  <a href="https://github.com/mrnitinsaxena/smart-edge/releases">Releases</a>
+</p>
 
 ESPHome firmware for the **Smart Edge Pro Sensor** by Resonate to Innovate: an ESP32-based room sensor with temperature, humidity and light sensing, optional mmWave presence detection, IR remote control and a status LED with a buzzer. Built for [Home Assistant](https://www.home-assistant.io/).
 
@@ -14,13 +26,14 @@ ESPHome firmware for the **Smart Edge Pro Sensor** by Resonate to Innovate: an E
 
 ## Getting started
 
-1. **Power the device** from a 5 V USB supply. It beeps once and the LED pulses green.
-2. **Connect it to Wi-Fi** in one of two ways:
+1. **Install the firmware** (skip if your sensor came pre-installed): open the [web installer](https://mrnitinsaxena.github.io/smart-edge/) in Chrome or Edge, connect the sensor by USB and click **Install firmware**.
+2. **Power the device** from a 5 V USB supply. It beeps once and the LED pulses green.
+3. **Connect it to Wi-Fi** in one of two ways:
    - **Bluetooth:** open the Home Assistant app, or [improv-wifi.com](https://www.improv-wifi.com/) in Chrome, and select the device.
    - **Hotspot:** join the `pro-sensor-xxxxxx` Wi-Fi network from your phone. The setup page opens automatically.
 
    Two beeps and a blue LED mean it's online.
-3. **Add it to Home Assistant.** It's discovered automatically under *Settings → Devices & services*. Click **Configure**. Three beeps mean Home Assistant has connected.
+4. **Add it to Home Assistant.** It's discovered automatically under *Settings → Devices & services*. Click **Configure**. Three beeps mean Home Assistant has connected.
 
 ### Customize the firmware (optional)
 
@@ -141,3 +154,13 @@ The high-temperature alert is a convenience feature. It is **not** a certified s
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+---
+
+<p align="center">
+  Designed and built by<br><br>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="static/images/resonate-to-innovate-logo-dark.svg">
+    <img src="static/images/resonate-to-innovate-logo.svg" alt="Resonate to Innovate" width="240">
+  </picture>
+</p>
