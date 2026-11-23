@@ -7,7 +7,7 @@ ESPHome firmware for the **Smart Edge Pro Sensor** by Resonate to Innovate: an E
 - **Environment:** temperature and humidity (AHT20) and illuminance (BH1750), each with an adjustable calibration offset
 - **Presence (optional):** works with the HLK-LD2410, LD2412, LD2420 and LD2450, DFRobot SEN0395 and SEN0609, and Seeed MR24HPC1 mmWave radars
 - **IR control (optional):** Samsung and Sony TVs, Daikin and Panasonic ACs, Atomberg fans
-- **Alerts:** a high-temperature alert with an adjustable threshold, a siren and an emergency LED pattern; can also follow a Home Assistant alarm panel such as Alarmo
+- **Alerts:** a high-temperature alert with an adjustable threshold, a siren and an emergency LED pattern; follows Alarmo automatically, and an **External alarm** switch lets any Home Assistant automation sound the siren
 - **Status feedback:** RGB LED and buzzer for boot, Wi-Fi and Home Assistant connection, with a Do Not Disturb switch
 - **Easy setup:** Wi-Fi over Bluetooth (Improv) or a captive portal; adopt in Home Assistant and the ESPHome dashboard
 - **Secure by default:** no shared passwords or keys; Home Assistant sets the API encryption key when it adopts the device
@@ -87,7 +87,8 @@ Set any of these under `substitutions:` in your device config.
 
 | Option | Default | Description |
 |---|---|---|
-| `alarm_panel_entity` | — | Home Assistant alarm panel (e.g. `alarm_control_panel.alarmo`) that triggers the siren when it goes off |
+| `alarm_panel_entity` | `alarm_control_panel.alarmo` | Home Assistant alarm panel that triggers the siren when it goes off |
+| `alarm_panel` | `true` | Set `false` to stop following an alarm panel |
 | `external_ws2812_pin` | onboard | GPIO for an external WS2812 strip |
 | `external_ws2812_num_led` | `1` | Number of LEDs on the external strip |
 
@@ -103,7 +104,16 @@ Set the **Power supply** option in Home Assistant to match your adapter. The LED
 | Wi-Fi / HA lost | Fast pulse | Long tone |
 | Alert | Red/blue flashing | Siren |
 
-**Do Not Disturb** (on by default) silences the connection sounds and LEDs. Alerts always sound.
+**Do Not Disturb** (off by default) silences the connection sounds and LEDs. Alerts always sound.
+
+## Alarms
+
+- **Alarmo:** if you use [Alarmo](https://github.com/nielsfaber/alarmo), the sensor sounds its siren automatically whenever the alarm is triggered.
+- **Anything else:** use the **External alarm** switch. For example, create an automation: *when the smoke detector or water leak sensor turns on, turn on Pro Sensor External alarm*. Turn the switch off to silence it.
+
+## Choosing your IR remotes
+
+Under the device's **Configuration** in Home Assistant, set **TV remote**, **AC remote** and **Fan remote** to your brands. The device restarts and only shows the controls for the brands you chose. If you switch brands later, update any automations that used the old controls.
 
 ## Factory reset
 
