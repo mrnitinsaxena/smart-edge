@@ -4,7 +4,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.2"
+  firmware_version: "2026.11.3"
   project_id: "resonate.smart-edge-pro-sensor"
 
   SDA_I2C_PIN: "21"
@@ -32,6 +32,8 @@ substitutions:
     file: core-ir-fan-select.yaml
   wifi_custom_capabilities: !include
     file: core-wifi-custom.yaml
+  area_capabilities: !include
+    file: core-area.yaml
   api_key_capabilities: !include
     file: core-api-key.yaml
   web_server_capabilities: !include
@@ -87,6 +89,7 @@ packages:
   core_ir: ${ ir_capabilities if (ir_atomberg_fan is defined and ir_atomberg_fan) or (ir_daikin_ac is defined and ir_daikin_ac) or (ir_panasonic_ac is defined and ir_panasonic_ac) or (ir_samsung_tv is defined and ir_samsung_tv) or (ir_sony_tv is defined and ir_sony_tv) else {} }
   wifi_custom_capabilities: ${ wifi_custom_capabilities if wifi_ssid is defined and wifi_password is defined and wifi_ssid != "" and wifi_password != "" else {} }
   api_key_capabilities: ${ api_key_capabilities if api_key is defined and api_key != "" else {} }
+  area_capabilities: ${ area_capabilities if custom_area is defined and custom_area != "" else {} }
   web_server_capabilities: ${ web_server_capabilities if web_username is defined and web_password is defined and web_username != "" and web_password != "" else {} }
   alarm_panel_capabilities: ${ alarm_panel_capabilities if not (alarm_panel is defined and not alarm_panel) else {} }
   improv_ble_capabilities: ${ {} if improv_ble is defined and not improv_ble else improv_ble_capabilities }

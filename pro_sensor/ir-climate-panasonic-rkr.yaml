@@ -8,6 +8,9 @@ climate:
   - platform: panaac
     name: Panasonic AC
     id: panasonic_ac
+    fanlevel_id: panasonic_ac_fan_level
+    swingv_id: panasonic_ac_swing_vertical
+    swingh_id: panasonic_ac_swing_horizontal
     receiver_id: ir_receiver
     supports_heat: true
     supports_quiet: true
