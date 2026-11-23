@@ -4,7 +4,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.3"
+  firmware_version: "2026.11.4"
   project_id: "resonate.smart-edge-pro-sensor"
 
   SDA_I2C_PIN: "21"
@@ -457,13 +457,6 @@ text_sensor:
     name: Presence sensor
     id: presence_sensor
     icon: mdi:motion-sensor
-    entity_category: diagnostic
-
-  - platform: version
-    name: Software version
-    id: software_version
-    icon: mdi:tag-check-outline
-    hide_timestamp: true
     entity_category: diagnostic
 
   - platform: template  
