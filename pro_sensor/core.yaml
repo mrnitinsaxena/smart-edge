@@ -4,7 +4,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.1"
+  firmware_version: "2026.11.2"
   project_id: "resonate.smart-edge-pro-sensor"
 
   SDA_I2C_PIN: "21"
@@ -157,6 +157,19 @@ esphome:
     - priority: -100
       then:
         - script.execute: apply_led_cap
+        - if:
+            condition:
+              switch.is_off: dnd
+            then:
+              - light.turn_on:
+                  id: notification_light
+                  effect: info
+                  brightness: 50%
+                  red: 0%
+                  green: 100%
+                  blue: 0%
+              - rtttl.play:
+                  rtttl: ${sound_one_beep}
     - priority: 600
       then:
         - text_sensor.template.publish:
@@ -177,19 +190,6 @@ esphome:
         - text_sensor.template.publish:
             id: brand
             state: ${brand}
-        - if:
-            condition:
-              switch.is_off: dnd
-            then:
-              - light.turn_on:
-                  id: notification_light
-                  effect: info
-                  brightness: 50%
-                  red: 0%
-                  green: 100%
-                  blue: 0%
-              - rtttl.play:
-                  rtttl: ${sound_one_beep}
 
 esp32:
   board: "esp32dev"
