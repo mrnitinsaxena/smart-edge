@@ -4,7 +4,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.0"
+  firmware_version: "2026.11.1"
   project_id: "resonate.smart-edge-pro-sensor"
 
   SDA_I2C_PIN: "21"
@@ -80,20 +80,7 @@ substitutions:
   mr24hpc1_gpio_capabilities: !include
     file: mr24hpc1-gpio.yaml
 
-  variant: Core
-    ${ "LED-" ~ external_ws2812_pin ~ "-" ~ external_ws2812_num_led if external_ws2812_pin is defined and external_ws2812_pin != WS2812_PIN and external_ws2812_num_led is defined and external_ws2812_num_led != 1 else "LED" }
-    ${ "IRABFN" if ir_atomberg_fan is defined and ir_atomberg_fan else "" }
-    ${ "IRDKAC" if ir_daikin_ac is defined and ir_daikin_ac else "" }
-    ${ "IRPSAC" if ir_panasonic_ac is defined and ir_panasonic_ac else "" }
-    ${ "IRSATV" if ir_samsung_tv is defined and ir_samsung_tv else "" }
-    ${ "IRSOTV" if ir_sony_tv is defined and ir_sony_tv else "" }
-    ${ "LD2412" if ld2412 is defined and ld2412 else "" }
-    ${ "LD2450" if ld2450 is defined and ld2450 else "" }
-    ${ "LD2410-UART" if ld2410 is defined and ld2410 and (sensor_mode_uart is defined and sensor_mode_uart) else "LD2410-GPIO" if ld2410 is defined and ld2410 else "" }
-    ${ "LD2420-UART" if ld2420 is defined and ld2420 and (sensor_mode_uart is defined and sensor_mode_uart) else "LD2420-GPIO" if ld2420 is defined and ld2420 else "" }
-    ${ "SEN0395-UART" if sen0395 is defined and sen0395 and (sensor_mode_uart is defined and sensor_mode_uart) else "SEN0395-GPIO" if sen0395 is defined and sen0395 else "" }
-    ${ "SEN0609-UART" if sen0609 is defined and sen0609 and (sensor_mode_uart is defined and sensor_mode_uart) else "SEN0609-GPIO" if sen0609 is defined and sen0609 else "" }
-    ${ "MR24HPC1-UART" if mr24hpc1 is defined and mr24hpc1 and (sensor_mode_uart is defined and sensor_mode_uart)  else "MR24HPC1-GPIO" if mr24hpc1 is defined and mr24hpc1 else "" }
+  presence_sensor_model: ${ (("HLK-LD2410 (UART)" if sensor_mode_uart is defined and sensor_mode_uart else "HLK-LD2410 (GPIO)") if ld2410 is defined and ld2410 else ("HLK-LD2412" if ld2412 is defined and ld2412 else (("HLK-LD2420 (UART)" if sensor_mode_uart is defined and sensor_mode_uart else "HLK-LD2420 (GPIO)") if ld2420 is defined and ld2420 else ("HLK-LD2450" if ld2450 is defined and ld2450 else (("DFRobot SEN0395 (UART)" if sensor_mode_uart is defined and sensor_mode_uart else "DFRobot SEN0395 (GPIO)") if sen0395 is defined and sen0395 else (("DFRobot SEN0609 (UART)" if sensor_mode_uart is defined and sensor_mode_uart else "DFRobot SEN0609 (GPIO)") if sen0609 is defined and sen0609 else (("Seeed MR24HPC1 (UART)" if sensor_mode_uart is defined and sensor_mode_uart else "Seeed MR24HPC1 (GPIO)") if mr24hpc1 is defined and mr24hpc1 else "Not installed"))))))) }
 
 
 packages:
@@ -101,7 +88,7 @@ packages:
   wifi_custom_capabilities: ${ wifi_custom_capabilities if wifi_ssid is defined and wifi_password is defined and wifi_ssid != "" and wifi_password != "" else {} }
   api_key_capabilities: ${ api_key_capabilities if api_key is defined and api_key != "" else {} }
   web_server_capabilities: ${ web_server_capabilities if web_username is defined and web_password is defined and web_username != "" and web_password != "" else {} }
-  alarm_panel_capabilities: ${ alarm_panel_capabilities if (alarm_panel_entity is defined and alarm_panel_entity != "") or not (product_build is defined and product_build) else {} }
+  alarm_panel_capabilities: ${ alarm_panel_capabilities if not (alarm_panel is defined and not alarm_panel) else {} }
   improv_ble_capabilities: ${ {} if improv_ble is defined and not improv_ble else improv_ble_capabilities }
   dashboard_import_capabilities: ${ dashboard_import_capabilities if dashboard_import_url is defined and dashboard_import_url != "" else {} }
   updates_capabilities: ${ updates_capabilities if update_manifest_url is defined and update_manifest_url != "" else {} }
@@ -182,8 +169,8 @@ esphome:
             id: firmware_version
             state: ${firmware_version}
         - text_sensor.template.publish:
-            id: variant
-            state: ${variant}
+            id: presence_sensor
+            state: ${presence_sensor_model}
         - text_sensor.template.publish:
             id: company
             state: ${company}
@@ -328,7 +315,7 @@ binary_sensor:
     id: safety_alert
     icon: mdi:exit-run
     device_class: safety
-    lambda: 'return id(internal_alert).state${ " || id(external_alert).state" if (alarm_panel_entity is defined and alarm_panel_entity != "") or not (product_build is defined and product_build) else "" };'
+    lambda: 'return id(internal_alert).state || id(external_alarm).state${ " || id(external_alert).state" if not (alarm_panel is defined and not alarm_panel) else "" };'
     on_press:
       then:
         - light.turn_on:
@@ -361,6 +348,13 @@ binary_sensor:
                   effect: None
 
 switch:
+  - platform: template
+    name: "External alarm"
+    id: external_alarm
+    icon: mdi:alarm-light
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+
   - platform: factory_reset
     name: Factory reset
     id: device_reset
@@ -377,7 +371,7 @@ switch:
     icon: mdi:minus-circle
     entity_category: config
     optimistic: true
-    restore_mode: RESTORE_DEFAULT_ON
+    restore_mode: RESTORE_DEFAULT_OFF
 
 sensor:
   - platform: internal_temperature
@@ -457,9 +451,9 @@ text_sensor:
     entity_category: diagnostic
 
   - platform: template  
-    name: Variant
-    id: variant
-    icon: mdi:cards-variant
+    name: Presence sensor
+    id: presence_sensor
+    icon: mdi:motion-sensor
     entity_category: diagnostic
 
   - platform: version
