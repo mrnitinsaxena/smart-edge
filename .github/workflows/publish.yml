@@ -31,7 +31,7 @@ jobs:
         with:
           yaml-file: pro-sensor.yaml
           complete-manifest: true
-          release-summary: ${{ github.event.release.name }}
+          release-summary: ${{ github.event.release.body }}
           release-url: ${{ github.event.release.html_url }}
           substitutions: |
             firmware_version=${{ steps.ver.outputs.version }}
