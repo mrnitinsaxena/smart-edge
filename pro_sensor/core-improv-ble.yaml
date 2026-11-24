@@ -1,4 +1,0 @@
-# Wi-Fi onboarding over Bluetooth (HA companion app / improv-wifi.com).
-# Disable with `improv_ble: false`.
-improv_ble:
-  authorizer: none
