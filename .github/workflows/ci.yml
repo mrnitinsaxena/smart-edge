@@ -24,6 +24,12 @@ jobs:
           - pro-sensor-ld2412
           - pro-sensor-ld2420
           - pro-sensor-ld2450
+          - pro-sensor-sen0395-ld2450
+          - pro-sensor-sen0609-ld2450
+          - pro-sensor-mr24hpc1-ld2450
+          - pro-sensor-ld2410-ld2450
+          - pro-sensor-ld2412-ld2450
+          - pro-sensor-ld2420-ld2450
     steps:
       - uses: actions/checkout@v4
 
