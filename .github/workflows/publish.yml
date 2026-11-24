@@ -28,6 +28,13 @@ jobs:
           - pro-sensor-ld2412     # HLK-LD2412
           - pro-sensor-ld2420     # HLK-LD2420
           - pro-sensor-ld2450     # HLK-LD2450
+          # dual radar: radar 1 (not LD2450) + HLK-LD2450 as radar 2
+          - pro-sensor-sen0395-ld2450
+          - pro-sensor-sen0609-ld2450
+          - pro-sensor-mr24hpc1-ld2450
+          - pro-sensor-ld2410-ld2450
+          - pro-sensor-ld2412-ld2450
+          - pro-sensor-ld2420-ld2450
     steps:
       - uses: actions/checkout@v4
 
@@ -35,7 +42,7 @@ jobs:
         id: ver
         run: |
           TAG="${{ github.event.release.tag_name }}"
-          case "$TAG" in v*) ;; *) echo "::error::Release tag must start with v (e.g. v2026.12.0)"; exit 1;; esac
+          case "$TAG" in v*) ;; *) echo "::error::Release tag must start with v (e.g. v2026.11.25)"; exit 1;; esac
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Build firmware
@@ -85,6 +92,12 @@ jobs:
               pro-sensor-ld2412)   label=" (LD2412)" ;;
               pro-sensor-ld2420)   label=" (LD2420)" ;;
               pro-sensor-ld2450)   label=" (LD2450)" ;;
+              pro-sensor-sen0395-ld2450)  label=" (SEN0395 + LD2450)" ;;
+              pro-sensor-sen0609-ld2450)  label=" (SEN0609 + LD2450)" ;;
+              pro-sensor-mr24hpc1-ld2450) label=" (MR24HPC1 + LD2450)" ;;
+              pro-sensor-ld2410-ld2450)   label=" (LD2410 + LD2450)" ;;
+              pro-sensor-ld2412-ld2450)   label=" (LD2412 + LD2450)" ;;
+              pro-sensor-ld2420-ld2450)   label=" (LD2420 + LD2450)" ;;
               *)                   label=" ($model)" ;;
             esac
             jq --arg n "Resonate to Innovate: Smart Edge Pro Sensor$label" \
