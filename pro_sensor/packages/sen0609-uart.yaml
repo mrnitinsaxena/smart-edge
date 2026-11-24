@@ -10,7 +10,7 @@ uart:
     baud_rate:  9600
     data_bits: 8
     stop_bits: 1
-    rx_pin: ${RADAR1_TX1_PIN}   # SEN0609: RX/TX swapped (as in earlier firmware) - confirm wiring
+    rx_pin: ${RADAR1_TX1_PIN}   # SEN0609 connector: radar TX goes to GPIO 17 on board 2025.08.19 (confirmed)
     tx_pin: ${RADAR1_RX1_PIN}
     debug:
       direction: BOTH

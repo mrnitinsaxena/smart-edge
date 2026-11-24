@@ -26,6 +26,13 @@ script:
   - id: update_notice
     mode: restart
     then:
+      # The first check runs right after Wi-Fi connects; wait until Home Assistant has
+      # connected too (that turns the status LED off), so the pulse isn't cut short.
+      - wait_until:
+          condition:
+            api.connected:
+          timeout: 60s
+      - delay: 3s
       - if:
           condition:
             and:
