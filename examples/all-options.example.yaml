@@ -54,16 +54,5 @@ substitutions:
   logger_level: "WARN"          # DEBUG | INFO | WARN | ERROR
   usb_logs: false               # logs over the USB cable (115200 baud)
 
-  # ── Advanced: hardware pins & sounds (only change for a different board) ──
-  # SDA_I2C_PIN: "21"
-  # SCL_I2C_PIN: "22"
-  # BUZZER_PIN: "23"
-  # WS2812_PIN: "25"            # on-board status LED
-  # EXTERNAL_LED_PIN: "33"      # external WS2812 strip connector
-  # EXTERNAL_LED_MAX: "60"      # max LEDs on the external strip
-  # IR_RECEIVER_PIN: "18"
-  # IR_TRANSMITTER_PIN: "19"
-  # board_reserve_ma: "300"
-
 packages:
   core: github://mrnitinsaxena/smart-edge/pro_sensor/packages/core.yaml@v2026.11.24
