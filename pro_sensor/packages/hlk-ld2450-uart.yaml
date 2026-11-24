@@ -252,8 +252,7 @@ esphome:
                   }
               - delay: 2s
               - lambda: |-
-                  if (id(${ld2450_id}_bluetooth).state) {
-                    ESP_LOGW("radar", "Switching off radar Bluetooth");
-                    id(${ld2450_id}_bluetooth).turn_off();
-                  }
+                  // Switch off even if the radar has not reported its Bluetooth state yet (runs once)
+                  ESP_LOGW("radar", "Switching off radar Bluetooth");
+                  id(${ld2450_id}_bluetooth).turn_off();
                   id(${ld2450_id}_setup_done) = true;
