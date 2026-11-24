@@ -1,0 +1,18 @@
+# Included when `update_manifest_url` is set (ESP Web Tools manifest.json,
+# e.g. hosted on GitHub Pages). Gives an "Firmware update" entity in HA.
+http_request:
+
+ota:
+  - platform: http_request
+    id: ota_http_request
+    on_begin:
+      - script.execute: { id: ota_feedback, stage: 0 }
+    on_end:
+      - script.execute: { id: ota_feedback, stage: 1 }
+    on_error:
+      - script.execute: { id: ota_feedback, stage: 2 }
+
+update:
+  - platform: http_request
+    name: Firmware update
+    source: ${ update_manifest_url if update_manifest_url is defined else "" }

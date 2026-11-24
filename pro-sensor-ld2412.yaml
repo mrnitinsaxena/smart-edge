@@ -1,0 +1,8 @@
+# Smart Edge Pro Sensor - model: pro-sensor-ld2412
+# Built and published by the GitHub release workflow.
+substitutions:
+  model_id: "pro-sensor-ld2412"
+  ld2412: true
+
+packages:
+  core: !include packages/core.yaml
