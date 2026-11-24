@@ -1,8 +1,0 @@
-# Smart Edge Pro Sensor - model: pro-sensor-sen0609
-# Built and published by the GitHub release workflow.
-substitutions:
-  model_id: "pro-sensor-sen0609"
-  sen0609: true
-
-packages:
-  core: !include packages/core.yaml

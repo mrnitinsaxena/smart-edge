@@ -1,8 +1,0 @@
-# Smart Edge Pro Sensor - model: pro-sensor-mr24hpc1
-# Built and published by the GitHub release workflow.
-substitutions:
-  model_id: "pro-sensor-mr24hpc1"
-  mr24hpc1: true
-
-packages:
-  core: !include packages/core.yaml
