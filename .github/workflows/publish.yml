@@ -8,6 +8,7 @@ permissions:
   contents: write   # attach binaries to the release
   pages: write      # deploy to GitHub Pages
   id-token: write
+  actions: read     # deploy-pages reads the uploaded Pages artifact
 
 concurrency:
   group: pages
@@ -36,13 +37,13 @@ jobs:
           - pro-sensor-ld2412-ld2450
           - pro-sensor-ld2420-ld2450
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Version from tag
         id: ver
         run: |
           TAG="${{ github.event.release.tag_name }}"
-          case "$TAG" in v*) ;; *) echo "::error::Release tag must start with v (e.g. v2026.11.25)"; exit 1;; esac
+          case "$TAG" in v*) ;; *) echo "::error::Release tag must start with v (e.g. v2026.11.24.2)"; exit 1;; esac
           echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
 
       - name: Build firmware
@@ -62,7 +63,7 @@ jobs:
           mkdir -p out/${{ matrix.model }}
           cp -r "${{ steps.esphome.outputs.name }}"/* out/${{ matrix.model }}/
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: fw-${{ matrix.model }}
           path: out
@@ -71,9 +72,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           pattern: fw-*
           merge-multiple: true
@@ -123,7 +124,7 @@ jobs:
           done
           gh release upload "${{ github.event.release.tag_name }}" assets/*.bin --clobber
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -135,4 +136,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
