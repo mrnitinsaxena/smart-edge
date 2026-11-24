@@ -1,8 +1,8 @@
-<p align="center">
-  <picture>
-    <img src="static/images/smart-edge-logo.svg" alt="Smart Edge" width="440">
-  </picture>
+<p>
+  <a href="https://resonatetoinnovate.com/"><img src="static/images/resonate-to-innovate-logo.svg" alt="Resonate to Innovate" width="190" align="left"></a>
+  <a href="https://resonatetoinnovate.com/"><img src="static/images/smart-edge-logo.svg" alt="Smart Edge" width="300" align="right"></a>
 </p>
+<br clear="both">
 
 <h1 align="center">Pro Sensor</h1>
 
@@ -83,7 +83,7 @@ You can also start from scratch:
 
 ```yaml
 packages:
-  smart_edge: github://mrnitinsaxena/smart-edge/pro_sensor/pro-sensor-sen0395.yaml@v2026.11.25
+  smart_edge: github://mrnitinsaxena/smart-edge/pro_sensor/pro-sensor-sen0395.yaml@v2026.11.24.1
 
 wifi:
   ssid: !secret wifi_ssid
