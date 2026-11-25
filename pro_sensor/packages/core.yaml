@@ -51,7 +51,7 @@ substitutions:
   device_name: "pro-sensor"
   model: "Pro Sensor"
   hardware_version: "2025.08.19"
-  firmware_version: "2026.11.24.3"
+  firmware_version: "2026.11.25"
   project_id: "Resonate to Innovate.Smart Edge Pro Sensor"
   # Model - set by each model file in pro_sensor/; must match the radar (decides which update file the device follows):
   #   pro-sensor           no radar
@@ -64,9 +64,9 @@ substitutions:
   #   pro-sensor-ld2450    HLK-LD2450
   #   pro-sensor-<radar 1>-ld2450   any of the above except LD2450 + HLK-LD2450 as radar 2 (dual-radar models)
   model_id: "pro-sensor"
-  github_repo: "mrnitinsaxena/smart-edge"
+  github_repo: "mrnitinsaxena/smart-edge-pro-sensor"
   dashboard_import_url: "github://${github_repo}/pro_sensor/${model_id}.yaml@v${firmware_version}"
-  update_manifest_url: "https://mrnitinsaxena.github.io/smart-edge/${model_id}/manifest.json"
+  update_manifest_url: "https://mrnitinsaxena.github.io/smart-edge-pro-sensor/${model_id}/manifest.json"
 
   # Pins - defaults = board 2025.08.19. Each board's file in pro_sensor/hardware/ sets its own.
   SDA_I2C_PIN: "21"
