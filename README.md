@@ -6,9 +6,12 @@
 
 <h1 align="center">Pro Sensor</h1>
 
+> [!IMPORTANT]
+> **This repository has moved to [github.com/mrnitinsaxena/smart-edge-pro-sensor](https://github.com/mrnitinsaxena/smart-edge-pro-sensor).** Sensors update to the new location automatically with v2026.11.25. New releases are published only there.
+
 <p align="center">
-  <a href="https://mrnitinsaxena.github.io/smart-edge/"><b>Install firmware</b></a> ·
-  <a href="https://github.com/mrnitinsaxena/smart-edge/releases">Releases</a>
+  <a href="https://mrnitinsaxena.github.io/smart-edge-pro-sensor/"><b>Install firmware</b></a> ·
+  <a href="https://github.com/mrnitinsaxena/smart-edge-pro-sensor/releases">Releases</a>
 </p>
 
 ESPHome firmware for the **Smart Edge Pro Sensor** by [Resonate to Innovate](https://resonatetoinnovate.com/): an ESP32-based room sensor with temperature, humidity and light sensing, optional mmWave presence detection, IR remote control and a status LED with a buzzer. Built for [Home Assistant](https://www.home-assistant.io/).
@@ -68,7 +71,7 @@ static/                   # web installer page and logos
 
 ## Getting started
 
-1. **Install the firmware** (skip if your sensor came pre-installed): open the [web installer](https://mrnitinsaxena.github.io/smart-edge/) in Chrome or Edge, **choose the model that matches your radar**, connect the sensor by USB and click **Install firmware**.
+1. **Install the firmware** (skip if your sensor came pre-installed): open the [web installer](https://mrnitinsaxena.github.io/smart-edge-pro-sensor/) in Chrome or Edge, **choose the model that matches your radar**, connect the sensor by USB and click **Install firmware**.
 2. **Power the device** from a 5 V USB supply. It beeps once and the LED pulses green.
 3. **Connect it to Wi-Fi:** on your phone, join the `pro-sensor-xxxxxx` Wi-Fi network. The setup page opens automatically (or go to `192.168.4.1`); pick your network and enter the password.
 
@@ -83,7 +86,7 @@ You can also start from scratch:
 
 ```yaml
 packages:
-  smart_edge: github://mrnitinsaxena/smart-edge/pro_sensor/pro-sensor-sen0395.yaml@v2026.11.24.3
+  smart_edge: github://mrnitinsaxena/smart-edge-pro-sensor/pro_sensor/pro-sensor-sen0395.yaml@v2026.11.25
 
 wifi:
   ssid: !secret wifi_ssid
